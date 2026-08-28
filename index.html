@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bioparco di Sicilia — Giochi (pagina interna)</title>
+<style>
+  :root{
+    --green-deep:#2F6B32;
+    --green-leaf:#7CB342;
+    --cream:#FFF6E8;
+    --ink:#3B2A22;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:'Nunito', system-ui, sans-serif;
+    background: linear-gradient(180deg, #eaf7de, #fff3d6);
+    color:var(--ink);
+    padding:32px 16px;
+  }
+  .wrap{ max-width:480px; margin:0 auto; }
+  h1{
+    font-size:22px;
+    color:var(--green-deep);
+    margin-bottom:4px;
+  }
+  .note{
+    font-size:13px;
+    color:#8a7a6d;
+    margin-bottom:28px;
+    line-height:1.5;
+    background:rgba(255,255,255,0.6);
+    padding:10px 14px;
+    border-radius:12px;
+    border:1px solid rgba(47,107,50,0.15);
+  }
+  .game-list{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .game-card{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:#fff;
+    border-radius:16px;
+    padding:14px 16px;
+    text-decoration:none;
+    color:var(--ink);
+    box-shadow: 0 4px 0 rgba(59,42,34,0.08);
+    border: 2px solid var(--green-leaf);
+    transition: transform .12s ease;
+  }
+  .game-card:active{ transform:scale(0.98); }
+  .game-emoji{ font-size:28px; flex:0 0 auto; }
+  .game-info{ min-width:0; }
+  .game-name{ font-weight:800; font-size:16px; display:block; }
+  .game-slug{ font-size:12px; color:#8a7a6d; display:block; margin-top:2px; }
+  .empty-hint{
+    font-size:13px;
+    color:#8a7a6d;
+    text-align:center;
+    margin-top:24px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🌿 Bioparco di Sicilia — Giochi</h1>
+  <p class="note">
+    Questa pagina è solo per uso interno (per trovare velocemente i link ai giochi
+    e generare i QR code). I bambini accederanno sempre direttamente al singolo
+    gioco tramite QR, senza passare da qui.
+  </p>
+
+  <ul class="game-list">
+    <li>
+      <a class="game-card" href="banana-rush.html">
+        <span class="game-emoji">🐒</span>
+        <span class="game-info">
+          <span class="game-name">Banana Rush</span>
+          <span class="game-slug">banana-rush.html · classifica: banana-rush</span>
+        </span>
+      </a>
+    </li>
+
+    <!--
+      Quando aggiungete un nuovo gioco, copiate un blocco <li>...</li> come
+      quello sopra e cambiate: emoji, nome, nome del file, e nome della
+      classifica (deve corrispondere a CONFIG.GAME_SLUG usato nel gioco).
+
+      Esempio per un futuro memory:
+
+      <li>
+        <a class="game-card" href="memory-animali.html">
+          <span class="game-emoji">🧠</span>
+          <span class="game-info">
+            <span class="game-name">Memory degli Animali</span>
+            <span class="game-slug">memory-animali.html · classifica: memory-animali</span>
+          </span>
+        </a>
+      </li>
+    -->
+  </ul>
+
+  <p class="empty-hint">Aggiungete qui il link ad ogni nuovo gioco caricato nella repository.</p>
+</div>
+</body>
+</html>
