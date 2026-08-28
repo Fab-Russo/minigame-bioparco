@@ -36,6 +36,14 @@
          if (errore) { console.log("Errore:", errore); return; }
          // lista è un array tipo: [{ username: "Mario", score: 120 }, ...]
        });
+
+  6) GIOCHI A TEMPO (es. il memory): il punteggio salvato è il tempo, quindi
+     vince chi ha il numero PIÙ BASSO. In quel caso chiedi l'ordine crescente:
+       BioparcoGiochi.caricaClassifica("memory-animali", { limite: 10, ordine: "crescente" }, function(lista, errore){
+         ...
+       });
+     Consiglio: salva il tempo in centesimi di secondo (numero intero), così
+     due tempi vicini non finiscono a pari merito.
   ===========================================================================
 */
 (function (global) {
@@ -161,11 +169,20 @@
   }
 
   // ---- Lettura classifica di un gioco ----
-  function caricaClassifica(gameSlug, limite, callback) {
-    if (typeof limite === "function") {
-      callback = limite;
-      limite = 10;
+  // Il secondo parametro può essere: niente, un numero (quanti risultati),
+  // oppure un oggetto { limite: 10, ordine: "crescente" }.
+  // ordine "crescente" serve ai giochi a tempo, dove vince chi fa meno.
+  function caricaClassifica(gameSlug, opzioni, callback) {
+    if (typeof opzioni === "function") {
+      callback = opzioni;
+      opzioni = {};
     }
+    if (typeof opzioni === "number") {
+      opzioni = { limite: opzioni };
+    }
+    opzioni = opzioni || {};
+    var limite = opzioni.limite || 10;
+    var crescente = opzioni.ordine === "crescente";
     var sb = getClient();
     if (!sb) {
       callback(null, "Servizio classifica non disponibile al momento.");
@@ -174,8 +191,8 @@
     sb.from("scores")
       .select("score, created_at, players(username)")
       .eq("game", gameSlug)
-      .order("score", { ascending: false })
-      .limit(limite || 10)
+      .order("score", { ascending: crescente })
+      .limit(limite)
       .then(function (res) {
         if (res.error) {
           callback(null, "Impossibile caricare la classifica.");
