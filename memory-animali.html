@@ -16,7 +16,7 @@
 
   Come funziona:
   1) Barriera Instagram (segui la pagina per sbloccare il gioco).
-  2) Gioco: 8 coppie di animali del parco coperte. Prima 3 secondi
+  2) Gioco: 8 coppie di animali del parco coperte. Prima 5 secondi
      per memorizzare, poi si scoprono due carte alla volta finche'
      non si trovano tutte le coppie.
   3) Classifica online (Supabase, vedi leaderboard.js): qui il
@@ -457,7 +457,7 @@
         <h2>🦒 Trova le coppie!</h2>
         <p>Memorizza gli animali, poi scopri due carte alla volta</p>
         <div class="legend">
-          <div class="legend-item"><span class="legend-emoji">👀</span>3 secondi per memorizzare</div>
+          <div class="legend-item"><span class="legend-emoji">👀</span>5 secondi per memorizzare</div>
           <div class="legend-item"><span class="legend-emoji">🐘🐘</span>Trova tutte le 8 coppie</div>
           <div class="legend-item"><span class="legend-emoji">⏱</span>Vince chi fa più in fretta!</div>
         </div>
@@ -518,7 +518,7 @@
     BEST_TIME_KEY: "bioparco_memoryAnimali_besttime",
     GAME_SLUG: "memory-animali",
     COPPIE: 8,          // 8 coppie = 16 carte (griglia 4x4)
-    PEEK_MS: 3000,      // secondi di anteprima prima che parta il cronometro
+    PEEK_MS: 5000,      // secondi di anteprima prima che parta il cronometro
     WRONG_HIDE_MS: 750  // quanto restano visibili due carte sbagliate
   };
 

@@ -255,10 +255,10 @@
     position:absolute; left:50%; top:16%;
     transform:translate(-50%,-50%) scale(0.6);
     font-family:'Baloo 2', system-ui, sans-serif;
-    font-weight:800; font-size:clamp(22px,8vw,30px);
+    font-weight:800; font-size:clamp(14px,4vw,18px);
     color:#fff; text-shadow: 0 3px 0 rgba(0,0,0,0.25);
     background:linear-gradient(90deg,#ffb100,#ff7a00);
-    padding:8px 22px; border-radius:16px;
+    padding:5px 14px; border-radius:12px;
     opacity:0; pointer-events:none; z-index:4;
     transition: opacity .25s ease, transform .25s ease;
   }
@@ -545,7 +545,7 @@
 
   var monkey, items, particles, popups, ambient;
   var groundOffset, canopyOffset, elapsed, spawnTimer, score, lives, combo, comboShowTimer;
-  var frenzyUntil, shakeUntil, shakeMag, flashUntil;
+  var frenzyUntil, frenzyBannerUntil, shakeUntil, shakeMag, flashUntil;
   var scoreSaved = false;
   var returnOverlayEl = null;
   var initialized = false;
@@ -693,7 +693,7 @@
     groundOffset = 0; canopyOffset = 0;
     elapsed = 0; spawnTimer = 500;
     score = 0; lives = 3; combo = 1; comboShowTimer = 0;
-    frenzyUntil = -1; shakeUntil = -1; shakeMag = 0; flashUntil = -1;
+    frenzyUntil = -1; frenzyBannerUntil = -1; shakeUntil = -1; shakeMag = 0; flashUntil = -1;
     lastTime = null; scoreSaved = false;
 
     scoreLiveEl.textContent = '0';
@@ -823,6 +823,7 @@
     addPopup(it.x, it.y, '+'+Math.floor(pts), it.type==='golden' ? '#ffdd55' : '#fff');
     if (it.type === 'golden'){
       frenzyUntil = elapsed + 5;
+      frenzyBannerUntil = elapsed + 2;
       frenzyBanner.classList.add('show');
     }
   }
@@ -842,7 +843,7 @@
     var u = unit();
     elapsed += dt;
 
-    if (frenzyBanner.classList.contains('show') && elapsed > frenzyUntil){
+    if (frenzyBanner.classList.contains('show') && elapsed > frenzyBannerUntil){
       frenzyBanner.classList.remove('show');
     }
     if (comboShowTimer > 0){
